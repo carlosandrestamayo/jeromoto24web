@@ -10,7 +10,7 @@ export function setDb(config) {
     return JSON.parse(localStorage[listaName]).sort((a, b) => {
         return a[keySort] < b[keySort] ? -1 : 1
     })
-}   
+}
 
 export function setDb2(config) {
 
@@ -47,12 +47,12 @@ export function historialServicios(row){
                     arrOrdenes = [];
                     obj = {name:"",ordenes:[]}
                     for (let i = 0; i < datos.length; i++) {
-                
+
                         let val = datos[i].servicios.filter(s=> s.servicioTallerId == st.id && s.realizado == 1);
-                    
+
                         if(val.length > 0){
-                            arrOrdenes.push({orden:datos[i].name,fecha:datos[i].fechasalida,km:datos[i].km,name:st.name})    
-                        }    
+                            arrOrdenes.push({orden:datos[i].name,fecha:datos[i].fechasalida,km:datos[i].km,name:st.name})
+                        }
 
                     }
                     if(arrOrdenes.length > 0){
@@ -61,53 +61,54 @@ export function historialServicios(row){
                         arrServicios.push(obj)
                     }
                 }
-        
+
                 resolve(arrServicios);
             })
         })
     })
-            
+
 }
 
 
 export function gestion(url, params) {
     return new Promise((resolve, reject) => {
+      console.log(url)
         axios.get(url, params)
             .then(response => {
                 //console.log(response)
-                if(!response.data.error){  
+                if(!response.data.error){
                     //console.log(response)
                     resolve(response.data.datos);
                 }else{
                     reject(response.data.msg);
-                } 
+                }
             }).catch(e=>{
                 //console.log(e.message)
                 reject(e.message)
             })
     })
-} 
+}
 
 export function db(url, params) {
     return new Promise((resolve, reject) => {
         axios.get(url, params)
             .then(response => {
                 //console.log(response)
-                if(!response.data.error){  
+                if(!response.data.error){
                     //console.log(response)
                     resolve(response.data.datos);
                 }else{
                     reject(response.data.msg);
-                } 
+                }
             }).catch(e=>{
                 //console.log(e.message)
                 reject(e.message)
             })
     })
-} 
+}
 
 
-export function ValidateEmails(mail) 
+export function ValidateEmails(mail)
 {
  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
   {

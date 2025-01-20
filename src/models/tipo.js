@@ -20,13 +20,14 @@ export const tipo = reactive({
 
         await gestion(Tipo.url(), { params: { opcion: 1 } }).then(datos => {
             tipo.rows = datos;
+            console.log(datos)
             tipo.listaTipos = datos;
         }).catch(e=>{
             tipo.notificacion.type = true;
             tipo.notificacion.icon = "error";
             tipo.notificacion.msg = e;
         })
-    
+
     },
 
     //Tabla Marca
@@ -80,12 +81,12 @@ export const tipo = reactive({
     },
 
     editTabla:async()=>{
-        
+
         await gestion(Tabla.url(), {
                     params: {
-                        opcion: 3, 
-                        id: tipo.datoTabla.id, 
-                        km: tipo.datoTabla.km, 
+                        opcion: 3,
+                        id: tipo.datoTabla.id,
+                        km: tipo.datoTabla.km,
                         servicioTallerId: tipo.datoTabla.servicioTallerId,
                         tipoId: tipo.datoTabla.tipoId
                     }
@@ -111,7 +112,7 @@ export const tipo = reactive({
                 })
 
     },
-    
+
     accion: { value: -1, label: "NEUTRO" },
     openModal: (id) => {
         tipo.filter = "";
@@ -139,14 +140,14 @@ export const tipo = reactive({
         //let res = tipo.rows.filter(d => d.name == tipo.dato.name && d.id !== tipo.dato.id);
 
         //if (res.length == 0) {
-            
+
             if (tipo.accion.value == 0) {
                 //console.log(tipo.dato.marcaId)
                 await gestion(Tipo.url(), {
                     params: {
-                        opcion: 2, 
-                        id: tipo.dato.id, 
-                        name: tipo.dato.name, 
+                        opcion: 2,
+                        id: tipo.dato.id,
+                        name: tipo.dato.name,
                         marcaId: tipo.dato.marcaId
                     }
                 }).then(response => {
@@ -166,10 +167,10 @@ export const tipo = reactive({
             } else {
 
                 await gestion(Tipo.url(), {
-                    params: { 
-                        opcion: 3, 
-                        id: tipo.dato.id, 
-                        name: tipo.dato.name, 
+                    params: {
+                        opcion: 3,
+                        id: tipo.dato.id,
+                        name: tipo.dato.name,
                         marcaId: tipo.dato.marcaId }
                 }).then(response => {
                     tipo.notificacion.type = true;

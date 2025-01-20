@@ -10,57 +10,57 @@
                     Jeromotos 24
                 </q-toolbar-title>
                 <q-tabs v-model="tab" align="right">
-                    <q-tab name="configuraciones" v-if="true" icon="settings"></q-tab>
+                    <!--<q-tab name="configuraciones" v-if="true" icon="settings"></q-tab>
                     <q-tab name="marcas" label="Marcas"></q-tab>
                     <q-tab name="tipos" label="Referencias"></q-tab>
                     <q-tab name="personas" label="Personas"></q-tab>
                     <q-tab name="motos" label="Motos"></q-tab>
                     <q-tab name="serviciosTaller" label="Servicios Taller"></q-tab>
-                    <q-tab name="ordenes" v-if="true" label="Orden Servicio"></q-tab>
+                    <q-tab name="ordenes" v-if="true" label="Orden Servicio"></q-tab>-->
                 </q-tabs>
                 <q-btn dense flat round icon="logout" @click="closeSesion" />
             </q-toolbar>
         </q-header>
 
         <q-page-container>
-            
-            <tabla-marca v-if="tab == 'marcas'"></tabla-marca>
+
+            <!--<tabla-marca v-if="tab == 'marcas'"></tabla-marca>
             <tabla-tipo v-if="tab == 'tipos'"></tabla-tipo>
             <tabla-persona v-if="tab == 'personas'"></tabla-persona>
             <tabla-moto v-if="tab == 'motos'"></tabla-moto>
             <tabla-servicio-taller v-if="tab == 'serviciosTaller'"></tabla-servicio-taller>
             <configuracion v-if="tab=='configuraciones'"></configuracion>
-            <orden v-if="tab == 'ordenes'"></orden>
-            
+            <orden v-if="tab == 'ordenes'"></orden>-->
+
         </q-page-container>
 
     </q-layout>
     <q-layout  view="hHh lpR fFf" v-else>
         <q-page-container  class="q-ma-none">
 
-            <div style="width:100%;max-height: 100vh;"> 
-                <img style="object-fit: cover;min-width: 100%;max-height: 100vh;position:absolute;" src="../../public/imagenes/login.jpg" >
+            <div style="width:100%;max-height: 100vh;">
+                <!--<img style="object-fit: cover;min-width: 100%;max-height: 100vh;position:absolute;" src="../../public/imagenes/login.jpg" >-->
                 <div style="" class="box">
                     <h4 class="text-center text-white text-bold">Jeromotos 24</h4>
 
                     <div style="margin-top: 60px;">
                         <label class=" text-white" style="margin: 0px 10%;width:80%;">Usuario</label>
                         <input type="text" v-model="user" class="" style="margin: 5px 10%;width:80%;font-size:16px;padding:5px;">
-                    </div>   
-                    
+                    </div>
+
                     <label class="text-white" style="margin: 0px 10%;width:80%;">Contraseña</label>
                     <input type="password" v-model="password" class="" style="margin: 5px 10%;width:80%;font-size:16px;padding:5px;">
-                    <input type="button" @click="logear" class="btn" style="" value="Login" >        
+                    <input type="button" @click="logear" class="btn" style="" value="Login" >
                 </div>
             </div>
 
         </q-page-container>
     </q-layout>
 </template>
-  
+
 <script>
 
-import TablaMarca from "../components/TablaMarca.vue";
+/*import TablaMarca from "../components/TablaMarca.vue";
 import TablaTipo from "../components/TablaTipo.vue";
 import TablaPersona from "../components/TablaPersona.vue";
 import TablaMoto from "../components/TablaMoto.vue";
@@ -68,10 +68,10 @@ import TablaServicioTaller from "../components/TablaServicioTaller.vue";
 import Configuracion from "../components/Configuracion.vue"
 import Orden from "../components/Orden.vue";
 import Login from "../components/Login.vue";
-import { cfg } from "../models/configuracion.js";
+import { cfg } from "../models/configuracion.js";*/
 import { ref } from 'vue';
 
-import {app, database, auth, signInWithEmailAndPassword,createUserWithEmailAndPassword} from "../models/firebase.js"
+//import {app, database, auth, signInWithEmailAndPassword,createUserWithEmailAndPassword} from "../models/firebase.js"
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -80,12 +80,12 @@ function getRandomInt(max) {
 
 
 export default {
-    components: { TablaMarca, TablaTipo, TablaPersona, TablaMoto, TablaServicioTaller,Orden,Configuracion,Login},
+    //components: { TablaMarca, TablaTipo, TablaPersona, TablaMoto, TablaServicioTaller,Orden,Configuracion,Login},
     setup() {
-        
+
         return {
             login: ref(true),
-            password: ref(""), 
+            password: ref(""),
             isPwd: ref(true),
             user: ref(""),
             tab: ref('marcas'),
@@ -107,19 +107,19 @@ export default {
             this.password = "";
             //console.log(getRandomInt(3));
             //console.log(arrImg[getRandomInt(3)]);
-            
+
         },
         logear() {
             const obj = JSON.parse(sessionStorage["user"]);
             if(this.user == obj.admin || this.password == obj.pwd){
-                this.login = true;  
+                this.login = true;
             }
             this.login = true;
         },
         logears(){
             createUserWithEmailAndPassword(auth, "hola@hotmail.com", "12345678")
                 .then((userCredential) => {
-                // Signed in 
+                // Signed in
                  const user = userCredential.user;
                  console.log(user)
     // ...
@@ -159,7 +159,7 @@ export default {
     cursor:pointer;
 }
 
- 
+
 .tabla{
     width:50%;
     margin-left:25%;
